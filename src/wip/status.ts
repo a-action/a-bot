@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid'
 import { Context, Location } from './types'
 import { Config } from './config'
 import { Matcher } from './matcher'
@@ -72,18 +71,14 @@ export namespace Status {
 
   const checkName = 'WIP'
 
-  export async function check(context: Context, nextState: State) {
-    const { data } = await context.octokit.checks.listForRef(
+  export async function hasChange(context: Context, nextState: State) {
+    const {
+      data: { check_runs: checkRuns },
+    } = await context.octokit.checks.listForRef(
       context.repo({
         ref: context.payload.pull_request!.head.sha,
         check_name: checkName,
       }),
-    )
-
-    const checkRuns = data.check_runs.filter(
-      (item) =>
-        item.external_id != null &&
-        item.external_id.startsWith(`[${checkName}]`),
     )
 
     if (checkRuns.length === 0) {
@@ -144,7 +139,6 @@ export namespace Status {
     const metadata = {
       ...options,
       output,
-      external_id: `[${checkName}]${uuidv4()}`,
       head_sha: context.payload.pull_request!.head.sha,
 
       // workaround for https://github.com/octokit/rest.js/issues/874

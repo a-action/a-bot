@@ -35,8 +35,7 @@
   "dependencies": {
     "gemoji": "^6.1.0",
     "js-yaml": "^4.1.0",
-    "probot": "^12.1.1",
-    "uuid": "^8.3.2"
+    "probot": "^12.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
@@ -44,7 +43,6 @@
     "@types/jest": "^27.0.1",
     "@types/js-yaml": "^4.0.3",
     "@types/node": "^16.9.1",
-    "@types/uuid": "^8.3.1",
     "@typescript-eslint/eslint-plugin": "^4.1.1",
     "@typescript-eslint/parser": "^4.1.1",
     "devmoji": "^2.1.9",
