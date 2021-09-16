@@ -1,4 +1,4 @@
-import { emojiToName } from 'gemoji'
+import emojiToName from 'gemoji/emoji-to-name.json'
 import { Status } from './status'
 import { Config } from './config'
 import { Context } from './types'
@@ -88,7 +88,7 @@ ${configs.map((config) => line(config)).join('\n')}
       const match =
         emoji === undefined
           ? `"${state.match}"` // Text match
-          : `a ${emoji} emoji` // Emoji match
+          : `a ${state.match} emoji` // Emoji match
 
       const locationMap = {
         title: 'title',
