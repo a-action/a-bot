@@ -1,2 +1,2 @@
-# a-bot
+# bot
 A private bot for this organization
