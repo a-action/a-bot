@@ -92,12 +92,13 @@ export namespace Status {
     }
 
     const [{ conclusion, output }] = checkRuns
-    const isWip = conclusion !== 'success'
-    const override = output && output.title && /override/.test(output.title)
-
     context.log(
-      `[wip] Found check run: ${JSON.stringify({ conclusion, output })}`,
+      `[wip] First checkrun: ${JSON.stringify({ conclusion, output })}`,
     )
+
+    const isWip = conclusion !== 'success'
+    const override =
+      output != null && output.title != null && /override/.test(output.title)
 
     return isWip !== nextState.wip || override !== nextState.override
   }
@@ -134,9 +135,10 @@ export namespace Status {
 
     const output = Output.get(context, nextState)
 
-    context.log(`[wip] Create check run.`)
+    context.log(`[wip] Create checkrun.`)
     context.log(`  metadata: ${JSON.stringify(options)}`)
-    context.log(`  output: ${JSON.stringify(output)}`)
+    context.log(`  output.title: ${output.title}`)
+    context.log(`  output.summary: ${output.summary}`)
 
     const metadata = {
       ...options,
