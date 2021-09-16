@@ -76,28 +76,30 @@ export namespace Status {
       data: { check_runs: checkRuns },
     } = await context.octokit.checks.listForRef(
       context.repo({
-        ref: context.payload.pull_request!.head.sha,
+        ref: context.payload.pull_request.head.sha,
         check_name: checkName,
       }),
     )
 
+    context.log(
+      `[wip] Found ${checkRuns.length} checkrun${
+        checkRuns.length > 1 ? 's' : ''
+      }`,
+    )
+
     if (checkRuns.length === 0) {
-      context.log('[wip] No previous check runs.')
       return true
     }
 
-    context.log(`[wip] Found check runs: ${checkRuns.length}`)
-
     const [{ conclusion, output }] = checkRuns
     const isWip = conclusion !== 'success'
-    const hasOverride = output && output.title && /override/.test(output.title)
-    const preOverride = nextState.override === true
+    const override = output && output.title && /override/.test(output.title)
 
     context.log(
       `[wip] Found check run: ${JSON.stringify({ conclusion, output })}`,
     )
 
-    return isWip !== nextState.wip || hasOverride !== preOverride
+    return isWip !== nextState.wip || override !== nextState.override
   }
 
   export async function update(
