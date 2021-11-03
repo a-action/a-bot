@@ -65,9 +65,9 @@
     "ts-jest": "^27.0.5",
     "typescript": "^4.0.2"
   },
-  "repository": "https://github.com/a-action/a-bot.git",
-  "homepage": "https://github.com/a-action/a-bot",
-  "bugs": "https://github.com/a-action/a-bot/issues",
+  "repository": "https://github.com/a-action/bot.git",
+  "homepage": "https://github.com/a-action/bot",
+  "bugs": "https://github.com/a-action/bot/issues",
   "engines": {
     "node": ">= 10.13.0"
   },
