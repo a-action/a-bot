@@ -1,8 +1,8 @@
 {
-  "name": "a-bot",
+  "name": "bot",
   "version": "1.0.0",
   "private": true,
-  "description": "A private bot for this organization",
+  "description": "A private bot for your organization",
   "scripts": {
     "clean": "rimraf lib",
     "lint": "eslint 'src/**/*.{js,ts}?(x)' --fix",
